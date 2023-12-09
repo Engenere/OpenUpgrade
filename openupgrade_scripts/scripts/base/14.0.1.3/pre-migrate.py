@@ -108,6 +108,11 @@ def migrate(cr, version):
     odoo/modules/registry.py will break on the 'base' module not yet having
     been instantiated.
     """
+    # Engenere
+    openupgrade.logged_query(
+        cr,
+        "UPDATE res_partner SET company_id = NULL",
+    )
     if "openupgrade_framework" not in tools.config["server_wide_modules"]:
         logging.error(
             "openupgrade_framework is not preloaded. You are highly "

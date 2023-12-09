@@ -580,8 +580,7 @@ def create_account_bank_statement_line_reconciliation(env):
 def delete_xmlid_existing_groups(env):
     env.cr.execute(
         """DELETE FROM ir_model_data imd
-        USING account_group ag
-        WHERE ag.id = imd.res_id AND imd.model = 'account.group'
+        WHERE imd.model = 'account.group'
             AND imd.module != '__export__'
         RETURNING imd.res_id"""
     )
